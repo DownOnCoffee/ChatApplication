@@ -13,6 +13,10 @@ dotenv.config();
 const PORT=process.env.PORT || 5000;
 
 //Whenever api/auth route is there we call authRoutes middleware function
+
+app.get('/',(req,res)=>{
+    res.send('hi ')
+})
 app.use('/api/auth',authRoutes);
 app.use('/api/messages',messageRoutes);
 

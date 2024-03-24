@@ -11,7 +11,7 @@ const convoSchema=new mongoose.Schema({
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:'Message',
-            required:true
+            default:[]
         } 
     ]
 },{ timestamps: true },

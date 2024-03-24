@@ -5,6 +5,7 @@ const jwtAuthMiddleware=async (req,res,next)=>{
         const token=req.cookies.jwt;
         if(!token){
             return res.status(401).json({error:'unauthorized:no token provided'});
+            
         }
         const decoded=jwt.verify(token,process.env.SECRET_KEY);
 
@@ -15,12 +16,13 @@ const jwtAuthMiddleware=async (req,res,next)=>{
         const user=await User.findById(decoded.userdata).select("-password");
 
         req.user=user;
-        console.log(user);
+        
+       
         next();
 
     }catch(err){
-        console.log(error);
-        res.status(500),json({error:err});
+        console.log(err);
+        res.status(500).json({error:err});
     }
 
 }
