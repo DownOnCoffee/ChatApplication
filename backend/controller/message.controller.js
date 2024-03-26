@@ -30,10 +30,32 @@ const sendMessage = async (req, res) => {
       conversation.messages.push(newMessage._id);
     }
     await conversation.save();
+    res.send(201).json({newMessage});
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: err });
   }
 };
 
-export default sendMessage;
+const getMessage=async (req,res)=>{
+  try{
+    const {id:getChatOfId}=req.params;
+    const senderId=req.user._id;
+    const conversation=await Conversation.findOne({
+      participants:{$all:[senderId,getChatOfId]},
+    }).populate('messages');    // populate - directly takes all messages string from Message model
+  
+    if (!conversation){
+      return res.status(200).json([]);  //if no conversation is there between the users
+    }
+    
+    return res.status(200).json(conversation.messages); 
+
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ error: err });
+
+  }
+};
+
+export {sendMessage,getMessage};

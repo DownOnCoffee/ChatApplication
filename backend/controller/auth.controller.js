@@ -2,13 +2,14 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import generateToken from "../utils/GenerateToken.js";
+
  
  //functions when are called on their respective routes
- 
+
+ let currentUser = '';
  export const signup= async(req,res)=>{
     try{
         //checking user info
-        // console.log(req.body,"reqqq");
         const {username,password,fullName,gender,confirmPass}=req.body; //you request all of these from req body
 
         if (password!=confirmPass){
@@ -37,8 +38,9 @@ import generateToken from "../utils/GenerateToken.js";
         if (newUser){
             
         const Token=await generateToken(newUser._id,res);
-        console.log(Token,"tttttt");
         await newUser.save();          //save data
+
+        currentUser = newUser.username;
 
         //success response                       
         res.status(200).json({
@@ -68,7 +70,10 @@ import generateToken from "../utils/GenerateToken.js";
         if (!userExists || !passwordMatch){
             return res.status(400).send('Invalid username or password');
         }
-        generateToken(userExists._id,res);
+        generateToken(userExists._id,res);  
+
+        currentUser = userExists.username;
+
         res.status(201).json({
             username:userExists.username,
             fullName: userExists.fullName,
@@ -83,10 +88,24 @@ import generateToken from "../utils/GenerateToken.js";
  export const logout =(req,res)=>{
     try {
 		res.cookie("jwt", "", { maxAge: 0 });   //DELETING or expiring the cookie for logout
+        currentUser = '';
 		res.status(200).json({ message: "Logged out successfully" });
 	} catch (error) {
 		console.log("Error in logout controller", error.message);
 		res.status(500).json({ error: "Internal Server Error" });
 	}
 
+ }
+ export const logininfo=async (req,res)=>{
+    try{
+        currentUser==''?res.send('Please Log in !'): res.send(currentUser);
+       
+
+    }catch(err){
+        console.log(err);
+        res.status(500).json({error:err});
+
+    }
+    
+   
  }
