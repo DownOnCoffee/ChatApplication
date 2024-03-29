@@ -34,9 +34,8 @@ import generateToken from "../utils/GenerateToken.js";
         });
 
         //if correct user data is sent then ...
-        console.log(newUser,"newuser");
+        
         if (newUser){
-            
         const Token=await generateToken(newUser._id,res);
         await newUser.save();          //save data
 
