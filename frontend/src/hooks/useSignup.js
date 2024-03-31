@@ -33,7 +33,10 @@ function useSignUp() {
       })
       .then(function (response) {
         console.log(response);
+        const data=response.data;
+        localStorage.setItem("chat-user",JSON.stringify(data)); //after user signs up , his details are stored in local storage
         setLoading(false);
+      
       })
       .catch(function (error) {
         console.log(error);

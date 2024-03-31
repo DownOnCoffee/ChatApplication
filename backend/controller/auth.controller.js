@@ -49,7 +49,7 @@ import generateToken from "../utils/GenerateToken.js";
         });
         }
         else{
-            return res.status(400).json({error:'inavlid user data '});
+            return res.status(400).json({error:'Inavlid user data '});
         }
         
 
