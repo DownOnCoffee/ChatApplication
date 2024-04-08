@@ -7,7 +7,7 @@ const LogoutButton = () => {
     <>
    <div className='mt-auto'>
 			{!Loading ? (
-				<BiLogOut className='w-6 h-6 text-white cursor-pointer' onClick={  handleLogout} />
+				<BiLogOut className='w-6 h-6 text-white cursor-pointer' onClick={ handleLogout} />
 			) : (
 				<span className='loading loading-spinner'></span>
 			)}

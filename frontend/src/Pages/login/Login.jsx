@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import useLogin from '../../hooks/useLogin';
 
 const Login=()=> {
-  const {handleLogin}=useLogin();
+  const {handleLogin,Loading}=useLogin();
+  
   const [loginInfo,setloginInfo]=useState({
     username:'',
     password:'',
   });
   async function handlesubmit(e){
     e.preventDefault();
-    await handleLogin();
+    await handleLogin(loginInfo);
   }
   return (
     <>

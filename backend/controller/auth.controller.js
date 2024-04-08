@@ -3,6 +3,7 @@ import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import generateToken from "../utils/GenerateToken.js";
 
+
  
  //functions when are called on their respective routes
 
@@ -68,14 +69,16 @@ import generateToken from "../utils/GenerateToken.js";
         const passwordMatch= await bcrypt.compare(password, userExists?.password || ""); //if username doesnt exist so we set password to empty string so in comparing it returns false
         if (!userExists || !passwordMatch){
             return res.status(400).send('Invalid username or password');
-        }
-        generateToken(userExists._id,res);  
 
-        currentUser = userExists.username;
+        }
+        const generatedToken=generateToken(userExists._id,res);  
+
+        // currentUser = userExists.username;
 
         res.status(201).json({
             username:userExists.username,
             fullName: userExists.fullName,
+            token: generatedToken
         });
     }catch(err){
         console.log(err);

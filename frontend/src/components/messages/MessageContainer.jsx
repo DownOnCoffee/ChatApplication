@@ -7,6 +7,8 @@ const MessageContainer = () => {
   let chatSelected = true;
   return (
     <>
+
+    {/* If chat is selected then open chat if not, welcome chat page */}
       {chatSelected ? (
         <div className="md:min-w-[450px] flex flex-col p-3">
           {/* <header></header> */}

@@ -8,13 +8,15 @@ const generateToken=(userdata,res)=>{
     const token = jwt.sign({userdata}, process.env.SECRET_KEY, {
         expiresIn: '15d' // 1 week
       });
-    res.cookie("jwt", token, {
-		maxAge: 15 * 24 * 60 * 60 * 1000, // MS
-		httpOnly: true, // prevent XSS attacks cross-site scripting attacks
-		sameSite: "strict", // CSRF attacks cross-site request forgery attacks
-        secure: process.env.NODE_ENV !== "development",
-	});
+      const cookie=res.cookie('jwt',token, { httpOnly: true, secure: true });
+      console.log(cookie,"cookie");
+      
+	// res.cookie("jwt", token, {
+	// });
+    // console.log("Cookie 'jwt' has been set:", token);
+    
     return token;
+
 };
 
 export default generateToken;

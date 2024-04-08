@@ -2,10 +2,13 @@
 import {useState} from 'react';
 import axios from 'axios';
 import toast from "react-hot-toast";
+import {useAuthContext} from "../contexts/AuthContext";
+
 
 function useSignUp() {
+    const {setAuthUser}=useAuthContext();
+
     const handleSignUp = ({fullName,password,confirmPassword,userName},setLoading) => {
-        
       //validation
       if (!fullName || !userName || !password || !confirmPassword){
         toast.error("Please fill in all fields");
@@ -35,6 +38,7 @@ function useSignUp() {
         console.log(response);
         const data=response.data;
         localStorage.setItem("chat-user",JSON.stringify(data)); //after user signs up , his details are stored in local storage
+        setAuthUser(data);
         setLoading(false);
       
       })

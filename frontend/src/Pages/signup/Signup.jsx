@@ -11,7 +11,7 @@ const Signup = () => {
     password:'',
     confirmPassword:'',
   });
-  const [loading, setLoading] = useState(false);
+  const [Loading, setLoading] = useState(false);
 
   const handleSignUp = useSignup();  //useSignup is a hook which has handlesignup a function inside it
 
