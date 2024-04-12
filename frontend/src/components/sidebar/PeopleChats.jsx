@@ -12,10 +12,10 @@ const PeopleChats = () => {
     <>
       <div className="py-2 flex flex-col overflow-auto">
 	
-        {/* {Conversations.map((convo) => (
+         {Conversations.map((convo) => (
           <Conversation key={convo._id} conversation={convo}></Conversation>
         ))}
-		{Loading ? <span className='loading loading-spinner mx-auto'></span> : null} */}
+		{Loading ? <span className='loading loading-spinner mx-auto'></span> : null} 
       </div>
     </>
   );

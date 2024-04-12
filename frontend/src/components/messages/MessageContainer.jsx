@@ -2,19 +2,27 @@ import React from "react";
 import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 import { TiMessages } from "react-icons/ti";
+import useConversations from '../../zustand/useConversations';
+import { useEffect } from "react";
 
 const MessageContainer = () => {
-  let chatSelected = true;
+  const { selectedConversation, setselectedConversation} = useConversations();
+
+  //refresh or on logout
+  useEffect(() => {
+    setselectedConversation(null);
+  }, []);
+  
   return (
     <>
 
     {/* If chat is selected then open chat if not, welcome chat page */}
-      {chatSelected ? (
+      {selectedConversation? (
         <div className="md:min-w-[450px] flex flex-col p-3">
           {/* <header></header> */}
           <div className="bg-[#689FA5] rounded-2xl px-4 py-2 mb-2">
             <span className="label-text text-white">To : </span>{" "}
-            <span className="text-gray-900 font-bold">John doe</span>
+            <span className="text-gray-900 font-bold">{selectedConversation.fullName}</span>
           </div>
           <Messages></Messages>
           <MessageInput></MessageInput>

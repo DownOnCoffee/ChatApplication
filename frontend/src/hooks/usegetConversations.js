@@ -7,14 +7,20 @@ function usegetConversations() {
   const [Conversations, setConversations] = useState([]);
   const [Loading, setLoading] = useState(false);
   useEffect(() => {
-    const getConversations = () => {
+    const getConversations = async () => {
       setLoading(true);
+      const storedData = JSON.parse(localStorage.getItem('chat-user'));
+      const jwtToken = storedData.token;
       
-      axios
-        .get("http://localhost:8000/api/users/",{ withCredentials: true })
+      await axios
+        .get("http://localhost:8000/api/users/",{
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        })
         .then(function (response) {
           const data = response.data;
-          console.log(data, "dataaaaaa");
+          // console.log(data, "dataaaaaa");
           setConversations(data);
          
         })

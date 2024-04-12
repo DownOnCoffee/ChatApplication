@@ -37,17 +37,17 @@ import generateToken from "../utils/GenerateToken.js";
         //if correct user data is sent then ...
         
         if (newUser){
-        const Token=await generateToken(newUser._id,res);
-        await newUser.save();          //save data
+            const Token=await generateToken(newUser._id,res);
+            await newUser.save();          //save data
 
-        currentUser = newUser.username;
+            currentUser = newUser.username;
 
-        //success response                       
-        res.status(200).json({
+            //success response                       
+            return res.status(200).json({
             _id:newUser,
             username:newUser.username,
             fullName:newUser.fullName,
-        });
+            });
         }
         else{
             return res.status(400).json({error:'Inavlid user data '});
@@ -55,8 +55,8 @@ import generateToken from "../utils/GenerateToken.js";
         
 
     }catch(err){
-        console.log(err);
-        res.status(500).json({error:"error in saving user information"});
+        const errorMessage=err.message;
+        return res.status(500).json({ error: errorMessage });
 
     }
    
@@ -81,8 +81,8 @@ import generateToken from "../utils/GenerateToken.js";
             token: generatedToken
         });
     }catch(err){
-        console.log(err);
-        res.status(500).json({error:"error in saving user information"});
+        const errorMessage=err.message;
+        return res.status(500).json({ error: errorMessage });
     }
     
 
@@ -91,10 +91,10 @@ import generateToken from "../utils/GenerateToken.js";
     try {
 		res.cookie("jwt", "", { maxAge: 0 });   //DELETING or expiring the cookie for logout
         currentUser = '';
-		res.status(200).json({ message: "Logged out successfully" });
+		return res.status(200).json({ message: "Logged out successfully" });
 	} catch (error) {
 		console.log("Error in logout controller", error.message);
-		res.status(500).json({ error: "Internal Server Error" });
+		return res.status(500).json({ error: "Internal Server Error" });
 	}
 
  }
@@ -104,8 +104,8 @@ import generateToken from "../utils/GenerateToken.js";
        
 
     }catch(err){
-        console.log(err);
-        res.status(500).json({error:err});
+        const errorMessage=err.message;
+        return res.status(500).json({ error: errorMessage });
 
     }
     

@@ -8,7 +8,7 @@ import {useAuthContext} from "../contexts/AuthContext";
 function useSignUp() {
     const {setAuthUser}=useAuthContext();
 
-    const handleSignUp = ({fullName,password,confirmPassword,userName},setLoading) => {
+    const handleSignUp = async ({fullName,password,confirmPassword,userName},setLoading) => {
       //validation
       if (!fullName || !userName || !password || !confirmPassword){
         toast.error("Please fill in all fields");
@@ -27,7 +27,7 @@ function useSignUp() {
 
       setLoading(true);
 
-      axios.post('http://localhost:8000/api/auth/signup', {
+      await axios.post('http://localhost:8000/api/auth/signup', {
         fullName:fullName,
         username: userName,
         password:password,

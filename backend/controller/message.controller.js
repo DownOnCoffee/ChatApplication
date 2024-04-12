@@ -30,10 +30,13 @@ const sendMessage = async (req, res) => {
       conversation.messages.push(newMessage._id);
     }
     await conversation.save();
-    res.send(201).json({newMessage});
+    console.log('msg uploaded'); 
+    return res.status(201).json({newMessage});
+
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: err });
+      console.log(err);
+      const errorMessage=err.message;
+      return res.status(500).json({ error: errorMessage });
   }
 };
 
@@ -52,8 +55,8 @@ const getMessage=async (req,res)=>{
     return res.status(200).json(conversation.messages); 
 
   }catch(err){
-    console.log(err);
-    res.status(500).json({ error: err });
+    const errorMessage=err.message;
+    return res.status(500).json({ error: errorMessage });
 
   }
 };

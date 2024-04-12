@@ -17,7 +17,7 @@ function useLogin(){
             return;
         }
         
-        axios.post('http://localhost:8000/api/auth/login', {
+        await axios.post('http://localhost:8000/api/auth/login', {
         username: username,
         password:password,
       })
