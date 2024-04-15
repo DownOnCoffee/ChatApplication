@@ -4,13 +4,13 @@ import toast from "react-hot-toast";
 import useConversation from "../zustand/useConversations";
 
 function usesendMessage() {
-  // const [Loading,setLoading]=useState(true);
+  const [Loading,setLoading]=useState(true);
   const { messages, setMessages, selectedConversation } = useConversation();
   const storedData = JSON.parse(localStorage.getItem("chat-user"));
   const jwtToken = storedData.token;
 
   const sendMessage = async (messageToBeSent) => {
-    // setLoading(true);
+    setLoading(true);
 
     await axios
       .post(
@@ -18,23 +18,14 @@ function usesendMessage() {
         { message: messageToBeSent }, // This is the payload
         {
           headers: {
-            Authorization: `Bearer ${jwtToken}`, // Correctly placed headers
+            Authorization: `Bearer ${jwtToken}`, //headers
           },
         }
       )
-      .then(function (response) {
-        // console.log(response);
-        const data = response.data;
-        // setLoading(false);
-      })
       .catch(function (error) {
-        const errorMessage =
-          error.response?.data?.error ||
-          error.error ||
-          "An unknown error occurred";
-        console.log(errorMessage);
-        // toast.error(errorMessage);
-        // setLoading(false);
+          console.log(error.error);
+          toast.error("The message could not be sent ");
+          setLoading(false);
       });
   };
 

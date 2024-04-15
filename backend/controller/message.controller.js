@@ -30,7 +30,7 @@ const sendMessage = async (req, res) => {
       conversation.messages.push(newMessage._id);
     }
     await conversation.save();
-    console.log('msg uploaded'); 
+    // console.log('msg uploaded'); 
     return res.status(201).json({newMessage});
 
   } catch (err) {
