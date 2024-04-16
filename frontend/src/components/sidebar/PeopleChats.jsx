@@ -5,8 +5,6 @@ import usegetConversations from "../../hooks/usegetConversations";
 
 const PeopleChats = () => {
   const { Conversations , Loading} = usegetConversations();
-  console.log(Conversations,"convoooo");
-
 
   return (
     <>

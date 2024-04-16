@@ -40,13 +40,14 @@ import generateToken from "../utils/GenerateToken.js";
             const Token=await generateToken(newUser._id,res);
             await newUser.save();          //save data
 
-            currentUser = newUser.username;
+            currentUser = newUser;
 
             //success response                       
             return res.status(200).json({
             _id:newUser,
             username:newUser.username,
             fullName:newUser.fullName,
+            profilePic:newUser.profilePic
             });
         }
         else{
@@ -73,12 +74,16 @@ import generateToken from "../utils/GenerateToken.js";
         }
         const generatedToken=generateToken(userExists._id,res);  
 
-        // currentUser = userExists.username;
+        currentUser = userExists;
+        // console.log(userExists._id,'userexistsid');
 
         res.status(201).json({
+            _id:userExists._id,
             username:userExists.username,
             fullName: userExists.fullName,
-            token: generatedToken
+            token: generatedToken,
+            profilePic:userExists.profilePic
+
         });
     }catch(err){
         const errorMessage=err.message;
