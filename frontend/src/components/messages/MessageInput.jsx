@@ -8,9 +8,10 @@ const MessageInput = () => {
 	const [messageToBeSent,setmessageToBeSent]=useState('');
 	const {sendMessage}=usesendMessage();
 	
-	const handleclick=(e)=>{
+	const handleclick=async (e)=>{
 		e.preventDefault();
-		sendMessage(messageToBeSent);
+		await sendMessage(messageToBeSent);
+		setmessageToBeSent("");
 	}
 	
   return (
@@ -18,7 +19,7 @@ const MessageInput = () => {
     <form className='px-4 my-1'>
  			<div className='w-full relative'>
  				
-                <input type="text" onChange={(e)=>{setmessageToBeSent(e.target.value)}} placeholder="Send a message" className="w-full border-white input block input-bordered input-warning " />
+                <input type="text" onChange={(e)=>{setmessageToBeSent(e.target.value)}} placeholder="Send a message" value={messageToBeSent} className="w-full border-white input block input-bordered input-warning " />
  				<button type='submit' onClick={handleclick} className='absolute top-4 right-0 flex items-center pe-3'>
  					<BsSend />
  				</button>

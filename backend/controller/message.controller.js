@@ -24,14 +24,15 @@
         senderId: senderId,
         receiverId: receiverId,
       });
-      await newMessage.save();
+      // await newMessage.save();
 
       if (newMessage) {
-        conversation.messages.push(newMessage._id);
+        await conversation.messages.push(newMessage._id);
       }
-      await conversation.save();
-      // console.log('msg uploaded'); 
-      return res.status(201).json({newMessage});
+      await Promise.all([conversation.save(), newMessage.save()]);
+      // await conversation.save();
+      console.log(newMessage,'newmsggg'); 
+      return res.status(201).json(newMessage);
 
     } catch (err) {
         console.log(err);
@@ -52,7 +53,7 @@
       if (!conversation){
         return res.status(200).json([]);  //if no conversation is there between the users
       }
-      
+      console.log(conversation.messages,'type of');
       return res.status(200).json(conversation.messages); 
 
     }catch(err){

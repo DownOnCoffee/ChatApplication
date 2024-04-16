@@ -8,7 +8,7 @@ const Message = ({content}) => {
   const { selectedConversation } = useConversation();
   
   const fromMe = content.senderId._id === authUser._id;  //to check if sender id is equal to logged in account
-  console.log(content.senderId,' ',authUser._id,' ');
+  // console.log(content.senderId,' ',authUser._id,' ');
   const chatClassName = fromMe ? "chat-end" : "chat-start";
   const bubbleBgColor = fromMe ? "bg-blue-500" : "";
   const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;

@@ -3,7 +3,7 @@ import Message from "./Message";
 import usegetMessage from "../../hooks/usegetMessage";
 
 const Messages = () => {
-  const { messages } = usegetMessage();
+  const { messages} = usegetMessage();
 
   // console.log(messages,'msgesssss');
   return (
@@ -17,7 +17,7 @@ const Messages = () => {
       ) : (
         <div className="px-4 flex-1 overflow-auto">
           {messages.map((message) => (
-            <Message key={message._id} content={message}></Message>
+            <Message content={message}></Message>
           ))}
         </div>
       )}
