@@ -5,10 +5,6 @@ const Conversation = ({conversation}) => {
 	
 	const { selectedConversation, setselectedConversation} = useConversations();
 	const selectedBg=(selectedConversation &&  conversation && selectedConversation._id === conversation._id)?'bg-sky-500':'';
-	
-	
-
-	
 
   return (
     <>

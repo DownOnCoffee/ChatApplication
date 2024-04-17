@@ -48,7 +48,8 @@
     
       const conversation=await Conversation.findOne({
         participants:{$all:[senderId,getChatOfId]},
-      }).populate({path:'messages',populate:{path:'senderId',select:'fullName username profilePic'}});
+      }).populate('messages');
+      // {path:'messages',populate:{path:'senderId',select:'fullName username profilePic'}}
 
       if (!conversation){
         return res.status(200).json([]);  //if no conversation is there between the users

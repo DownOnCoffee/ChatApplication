@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useRef} from "react";
 import Message from "./Message";
 import usegetMessage from "../../hooks/usegetMessage";
 
 const Messages = () => {
   const { messages} = usegetMessage();
 
-  // console.log(messages,'msgesssss');
+  const messagesEndRef = useRef(null);
+    if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' }); //to scroll down to the latest message
+    }
+
   return (
     <>
       {messages.length === 0 ? (
@@ -19,6 +23,7 @@ const Messages = () => {
           {messages.map((message) => (
             <Message content={message}></Message>
           ))}
+          <div ref={messagesEndRef} />
         </div>
       )}
     </>

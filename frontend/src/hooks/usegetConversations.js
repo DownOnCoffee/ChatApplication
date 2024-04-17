@@ -34,6 +34,6 @@ function usegetConversations() {
     getConversations();
   }, []);
 
-  return { Conversations, Loading };
+  return {Conversations, Loading,setConversations };
 }
 export default usegetConversations;

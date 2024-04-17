@@ -8,6 +8,8 @@ const useConversation = create((set) => ({
 	messages: [],
 	setMessages: (messages) => set({ messages }),
 	addMessage: (message) => set((state) => ({ messages: [...state.messages, message] })), 
+	filteredConvos: [],
+    setFilteredConvos: (filteredConvos) => set({ filteredConvos }),
 	
 }));
 
