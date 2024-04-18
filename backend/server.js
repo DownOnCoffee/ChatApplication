@@ -9,8 +9,9 @@ import messageRoutes from './routes/message.routes.js';
 import userRoutes  from './routes/user.routes.js';
 import cookieParser from "cookie-parser";
 import cors from 'cors';
+import { app, server } from "./socket/socket.js";
 
-const app=express();
+// const app=express();
 app.use(express.json());
 app.use(cookieParser());
 
@@ -41,4 +42,4 @@ app.use((err, req, res, next) => {
 });
 
 const PORT=process.env.PORT || 5000;
-app.listen(PORT,()=>{console.log(`Server started at port ${PORT} `)});
+server.listen(PORT,()=>{console.log(`Server started at port ${PORT} `)});
