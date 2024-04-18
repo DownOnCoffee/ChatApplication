@@ -13,12 +13,12 @@ const generateToken=(userdata,res)=>{
       secure: false, 
       sameSite: 'Lax', });
 
-      console.log(cookie,"cookie");
+    //   console.log(cookie,"cookie");
       
 	// res.cookie("jwt", token, {
 	// });
     // console.log("Cookie 'jwt' has been set:", token);
-    console.log("JWT cookie has been set");
+    
     
     return token;
 

@@ -54,7 +54,7 @@
       if (!conversation){
         return res.status(200).json([]);  //if no conversation is there between the users
       }
-      console.log(conversation.messages,'type of');
+     
       return res.status(200).json(conversation.messages); 
 
     }catch(err){
