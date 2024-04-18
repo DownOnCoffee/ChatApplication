@@ -2,6 +2,7 @@
   import Conversation from "../models/conversation.model.js";
   import User from "../models/user.model.js";
   import Message from "../models/message.model.js";
+  import {getReceiverSocketId,io} from '../socket/socket.js';
 
   const sendMessage = async (req, res) => {
     try {
@@ -24,14 +25,22 @@
         senderId: senderId,
         receiverId: receiverId,
       });
-      // await newMessage.save();
+
+      await newMessage.save();
+     
 
       if (newMessage) {
-        await conversation.messages.push(newMessage._id);
+        conversation.messages.push(newMessage._id);
       }
-      await Promise.all([conversation.save(), newMessage.save()]);
-      // await conversation.save();
-      console.log(newMessage,'newmsggg'); 
+      await conversation.save();
+
+      const receiverSocketId = getReceiverSocketId(receiverId);   //getting socketid of reciever user , if found
+		  if (receiverSocketId) {
+
+			  // io.to(<socket_id>).emit() used to send events to specific client
+			  io.to(receiverSocketId).emit("newMessage", newMessage);     //send new message to that user (real time)
+		  }
+    
       return res.status(201).json(newMessage);
 
     } catch (err) {
