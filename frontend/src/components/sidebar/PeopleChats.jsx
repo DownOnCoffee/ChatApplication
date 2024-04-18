@@ -5,9 +5,7 @@ import useConversation from "../../zustand/useConversations";
 
 
 const PeopleChats = () => {
-  const { Conversations , Loading} = usegetConversations();
   const {filteredConvos}=useConversation();
-  // const displayConversation=filteredConvos.length>1?filteredConvos:Conversations;
 
   return (
     <>
