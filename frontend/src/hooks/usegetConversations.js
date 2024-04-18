@@ -20,7 +20,6 @@ function usegetConversations() {
         })
         .then(function (response) {
           const data = response.data;
-          // console.log(data, "dataaaaaa");
           setConversations(data);
          
         })

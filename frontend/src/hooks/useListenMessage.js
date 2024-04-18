@@ -2,22 +2,21 @@ import React from 'react';
 import { useEffect } from "react";
 import { useSocketContext } from "../contexts/SocketContext";
 import useConversation from "../zustand/useConversations";
+import notificationSound from '../assets/sound/notification.mp3';
 
 const useListenMessage = () => {
     const { socket } = useSocketContext();
 	const { messages, setMessages } = useConversation();
-    console.log('1');
+
     useEffect(()=>{
-        console.log('2');
         socket?.on("newMessage",(newMessage)=>{
-            // console.log('New message received:', newMessage);
-            
+            newMessage.bounce=true;
+            const sound=new Audio(notificationSound); //Notification sound will ring when new message is sent
+            sound.play();
             setMessages([...messages,newMessage]);
         });
-        return()=>{
-            console.log('Cleaning up message listener');
-            socket?.off("newMessage");
-        }
+        return()=> socket?.off("newMessage");  //to run the event only once
+        
     },[socket,setMessages,messages]);
   
 }

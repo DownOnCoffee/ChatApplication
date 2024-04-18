@@ -5,9 +5,9 @@ import useListenMessage from "../../hooks/useListenMessage";
 
 const Messages = () => {
   const { messages} = usegetMessage();
-  useListenMessage();
+  useListenMessage();    //real time messaging hook 
 
-  const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef(null); 
     if (messagesEndRef.current) {
         messagesEndRef.current.scrollIntoView({ behavior: 'smooth' }); //to scroll down to the latest message
     }

@@ -5,14 +5,12 @@ import useConversation from "../zustand/useConversations";
 
 function usesendMessage() {
   const [Loading, setLoading] = useState(true);
-  const { messages, setMessages, addMessage, selectedConversation } =
-    useConversation();
+  const { messages, setMessages, addMessage, selectedConversation } = useConversation();
   const storedData = JSON.parse(localStorage.getItem("chat-user"));
   const jwtToken = storedData.token;
 
   const sendMessage = async (messageToBeSent) => {
     setLoading(true);
-    // console.log(messages,'messages')
 
     await axios
       .post(
@@ -25,11 +23,8 @@ function usesendMessage() {
         }
       )
       .then(function (response) {
-        const data = response.data;
-        console.log(data, "data");
-
+        const data = response.data
         addMessage(data);
-
         setLoading(false);
       })
       .catch(function (error) {
