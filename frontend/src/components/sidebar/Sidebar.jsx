@@ -11,7 +11,7 @@ const Sidebar = () => {
  			<Searchinput />
  			<div className='divider px-3'></div>
  			<PeopleChats />
-      <div className='space-x-2 p-2 flex flex-row '>
+      <div className='space-x-4 p-2 flex flex-row items-center'>
         <LogoutButton />
         <DeleteButton />
       </div>
