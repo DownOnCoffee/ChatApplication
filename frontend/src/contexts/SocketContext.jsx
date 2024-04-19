@@ -15,7 +15,6 @@ export const SocketContextProvider = ({ children }) => {
 	const { authUser } = useAuthContext();
 
 	useEffect(() => {
-        console.log(authUser,'authuser');
 		if (authUser) {
 			const socket = io("http://localhost:8000",{
                 query:{

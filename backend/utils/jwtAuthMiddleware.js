@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
+// import { sign } from "jsonwebtoken";
 const jwtAuthMiddleware=async (req,res,next)=>{
     try{
 

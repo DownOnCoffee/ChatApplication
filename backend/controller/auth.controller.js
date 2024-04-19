@@ -3,10 +3,7 @@ import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import generateToken from "../utils/GenerateToken.js";
 
-
- 
  //functions when are called on their respective routes
-
  let currentUser = '';
  export const signup= async(req,res)=>{
     try{
@@ -38,16 +35,18 @@ import generateToken from "../utils/GenerateToken.js";
         
         if (newUser){
             const Token=await generateToken(newUser._id,res);
+            console.log(Token,'tokennnnn');
             await newUser.save();          //save data
 
             currentUser = newUser;
 
             //success response                       
             return res.status(200).json({
-            _id:newUser,
+            _id:newUser._id,
             username:newUser.username,
             fullName:newUser.fullName,
-            profilePic:newUser.profilePic
+            profilePic:newUser.profilePic,
+            token:Token,
             });
         }
         else{
@@ -58,10 +57,7 @@ import generateToken from "../utils/GenerateToken.js";
     }catch(err){
         const errorMessage=err.message;
         return res.status(500).json({ error: errorMessage });
-
     }
-   
-
  }
  export const login= async (req,res)=>{
     try{
@@ -89,9 +85,8 @@ import generateToken from "../utils/GenerateToken.js";
         const errorMessage=err.message;
         return res.status(500).json({ error: errorMessage });
     }
-    
-
  }
+
  export const logout =(req,res)=>{
     try {
 		res.cookie("jwt", "", { maxAge: 0 });   //DELETING or expiring the cookie for logout

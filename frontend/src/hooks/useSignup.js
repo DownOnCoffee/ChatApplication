@@ -8,7 +8,7 @@ import {useAuthContext} from "../contexts/AuthContext";
 function useSignUp() {
     const {setAuthUser}=useAuthContext();
 
-    const handleSignUp = async ({fullName,password,confirmPassword,userName},setLoading) => {
+    const handleSignUp = async ({fullName,password,confirmPassword,userName,gender},setLoading) => {
       //validation
       if (!fullName || !userName || !password || !confirmPassword){
         toast.error("Please fill in all fields");
@@ -24,6 +24,10 @@ function useSignUp() {
         toast.error("Password do not match");
         return;
       }
+      if (gender=='' || gender===null){
+        toast.error("Gender should be selected");
+        return
+      }
 
       setLoading(true);
 
@@ -32,7 +36,7 @@ function useSignUp() {
         username: userName,
         password:password,
         confirmPass:confirmPassword,
-        gender:"female"
+        gender:gender
       })
       .then(function (response) {
         console.log(response);
