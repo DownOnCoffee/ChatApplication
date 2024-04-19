@@ -2,6 +2,7 @@ import React from 'react';
 import Searchinput from './SearchButton';
 import PeopleChats from './PeopleChats';
 import LogoutButton from './LogoutButton';
+import DeleteButton from './DeleteButton';
 
 const Sidebar = () => {
   return (
@@ -11,6 +12,7 @@ const Sidebar = () => {
  			<div className='divider px-3'></div>
  			<PeopleChats />
  			<LogoutButton />
+      <DeleteButton />
  		</div>
 
       

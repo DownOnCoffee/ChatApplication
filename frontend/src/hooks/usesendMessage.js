@@ -29,7 +29,7 @@ function usesendMessage() {
       })
       .catch(function (error) {
         console.log(error.error);
-        toast.error("The message could not be sent ");
+        toast.error("The message could not be sent");
         setLoading(false);
       });
   };

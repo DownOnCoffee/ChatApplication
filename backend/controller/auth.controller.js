@@ -111,3 +111,21 @@ import generateToken from "../utils/GenerateToken.js";
     
    
  }
+ export const deleteAccount=async (req,res)=>{
+    try{
+        const {id:idToBeDeleted}=req.params;
+        res.cookie("jwt", "", { maxAge: 0 });   //DELETING or expiring the cookie for logout
+        currentUser = '';
+        const deleteUser=await User.deleteOne({"_id":idToBeDeleted});
+        if (deleteUser){
+            console.log('user deleted');
+            return res.status(200).json({message:'Account successfully deleted'});
+
+        }
+        return;
+    }catch(err){
+        console.log(err.message);
+        return res.status(500).json({error:err.message});
+    }
+
+ }
