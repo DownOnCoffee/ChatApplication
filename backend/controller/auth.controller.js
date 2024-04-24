@@ -35,7 +35,6 @@ import generateToken from "../utils/GenerateToken.js";
         
         if (newUser){
             const Token=await generateToken(newUser._id,res);
-            console.log(Token,'tokennnnn');
             await newUser.save();          //save data
 
             currentUser = newUser;
@@ -118,7 +117,7 @@ import generateToken from "../utils/GenerateToken.js";
         currentUser = '';
         const deleteUser=await User.deleteOne({"_id":idToBeDeleted});
         if (deleteUser){
-            console.log('user deleted');
+           
             return res.status(200).json({message:'Account successfully deleted'});
 
         }

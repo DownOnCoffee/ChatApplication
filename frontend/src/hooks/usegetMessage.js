@@ -7,7 +7,6 @@ function usegetMessage() {
   const { selectedConversation, messages, setMessages } = useConversation();
   const storedData = JSON.parse(localStorage.getItem("chat-user"));
   const jwtToken = storedData.token;
-  // console.log(messages,'messages');
 
   useEffect(() => {
     const getMessages = () => {

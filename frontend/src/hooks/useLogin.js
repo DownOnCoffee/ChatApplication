@@ -22,7 +22,7 @@ function useLogin(){
         password:password,
       })
       .then(function (response) {
-        console.log(response);
+       
         const data=response.data;
         localStorage.setItem("chat-user",JSON.stringify(data)); //after user logs in , his details are stored in local storage
         setAuthUser(data);

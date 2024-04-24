@@ -39,7 +39,6 @@ function useSignUp() {
         gender:gender
       })
       .then(function (response) {
-        console.log(response);
         const data=response.data;
         localStorage.setItem("chat-user",JSON.stringify(data)); //after user signs up , his details are stored in local storage
         setAuthUser(data);

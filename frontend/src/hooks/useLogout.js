@@ -13,7 +13,6 @@ function useLogout(){
         await axios.post('http://localhost:8000/api/auth/logout', {
       })
       .then(function (response) {
-        console.log(response);
         localStorage.removeItem("chat-user"); 
         setAuthUser(null); //removing authuser from localstorage so that user is navigated to login page
         setLoading(false);
