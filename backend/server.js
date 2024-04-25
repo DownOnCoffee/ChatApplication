@@ -20,12 +20,12 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 
-const corsOptions = {
-    origin: 'http://localhost:3000', // this should match your front-end URL
-    credentials: true, // this is important to send cookies
-};
+// const corsOptions = {
+//     origin: 'http://localhost:3000', // this should match your front-end URL
+//     credentials: true, // this is important to send cookies
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // app.use((req, res, next) => {
 //     console.log('Cookies receivedd:',res.cookies);

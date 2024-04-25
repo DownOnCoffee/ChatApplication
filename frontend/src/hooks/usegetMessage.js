@@ -12,7 +12,7 @@ function usegetMessage() {
     const getMessages = () => {
       setLoading(true);
       axios
-        .get(`http://localhost:8000/api/messages/${selectedConversation._id}`, {
+        .get(`/api/messages/${selectedConversation._id}`, {
           headers: {
             Authorization: `Bearer ${jwtToken}`,
           },

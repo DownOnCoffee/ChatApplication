@@ -31,7 +31,7 @@ function useSignUp() {
 
       setLoading(true);
 
-      await axios.post('http://localhost:8000/api/auth/signup', {
+      await axios.post('/api/auth/signup', {
         fullName:fullName,
         username: userName,
         password:password,

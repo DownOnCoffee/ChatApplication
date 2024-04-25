@@ -10,7 +10,7 @@ function useLogout(){
 
     const handleLogout=async ()=>{
         setLoading(true);
-        await axios.post('http://localhost:8000/api/auth/logout', {
+        await axios.post('/api/auth/logout', {
       })
       .then(function (response) {
         localStorage.removeItem("chat-user"); 

@@ -14,7 +14,7 @@ function usesendMessage() {
 
     await axios
       .post(
-        `http://localhost:8000/api/messages/send/${selectedConversation._id}`,
+        `/api/messages/send/${selectedConversation._id}`,
         { message: messageToBeSent }, // This is the payload
         {
           headers: {

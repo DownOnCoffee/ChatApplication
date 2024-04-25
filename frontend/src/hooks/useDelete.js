@@ -13,7 +13,7 @@ function useDelete() {
     const id=authUser._id;
     
     await axios
-      .delete(`http://localhost:8000/api/auth/delete/${id}`)
+      .delete(`/api/auth/delete/${id}`)
       .then(function (response) {
         const data=response.data;
         toast.success(data.message);

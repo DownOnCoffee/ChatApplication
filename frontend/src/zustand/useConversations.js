@@ -10,7 +10,6 @@ const useConversation = create((set) => ({
 	addMessage: (message) => set((state) => ({ messages: [...state.messages, message] })), 
 	filteredConvos: [],
     setFilteredConvos: (filteredConvos) => set({ filteredConvos }),
-	
 }));
 
 export default useConversation;

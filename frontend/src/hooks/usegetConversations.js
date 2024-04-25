@@ -13,7 +13,7 @@ function usegetConversations() {
       const jwtToken = storedData.token;
       
       await axios
-        .get("http://localhost:8000/api/users/",{
+        .get("/api/users/",{
           headers: {
             Authorization: `Bearer ${jwtToken}`,
           },

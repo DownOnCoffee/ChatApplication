@@ -7,19 +7,10 @@ const generateToken=(userdata,res)=>{
         throw new Error('User data is required for token generation.');
     }
     const token = jwt.sign({userdata}, process.env.SECRET_KEY);
-    //   const cookie=res.cookie('jwt',token, { httpOnly: false, secure: false, sameSite: 'None'});
       const cookie= res.cookie('jwt', token, {
       sameSite: 'None',path: '/api',httpOnly: false,
       secure: false, 
       sameSite: 'Lax', });
-
-    //   console.log(cookie,"cookie");
-      
-	// res.cookie("jwt", token, {
-	// });
-    // console.log("Cookie 'jwt' has been set:", token);
-    
-    
     return token;
 
 };
