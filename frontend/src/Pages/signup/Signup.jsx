@@ -29,7 +29,7 @@ const Signup = () => {
         <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
           <h1 className="text-3xl font-bold text-center text-white">
             Sign Up
-            {/* <span className='text-[#689FA5]'> ChatApp</span> */}
+           
           </h1>
 
           <form

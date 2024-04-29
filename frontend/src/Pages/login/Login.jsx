@@ -19,7 +19,7 @@ const Login=()=> {
 			<div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
 				<h1 className='  font-bold text-3xl text-center text-gray-300'>
 					Login
-					<span className='text-[#689FA5] font-bold'>  ChatApp</span>
+					<span className='text-[#72c3cc] font-bold'>  SimplyChat</span>
 				</h1>
   
 				<form onSubmit={handlesubmit} className='p-3 mt-3 flex flex-col gap-3'>
